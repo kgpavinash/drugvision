@@ -40,7 +40,7 @@ client = vision.ImageAnnotatorClient()
 # The name of the image file to annotate
 file_name = os.path.join(
     os.path.dirname(__file__),
-    'risperidone-figure-03.jpg')
+    'risperidone-figure-03rot.jpg')
 
 # Loads the image into memory
 with io.open(file_name, 'rb') as image_file:
@@ -55,6 +55,13 @@ labels = response.label_annotations
 print('Labels:')
 for label in labels:
     print(label.description)
+
+print()
+
+resp = client.text_detection(image=image)
+# print('\n'.join([d.description for d in resp.text_annotations]))
+for d in resp.text_annotations:
+    print(d.description)
 
 
 
