@@ -27,7 +27,7 @@ client = vision.ImageAnnotatorClient()
 # Assuming there are not subdirectories, only image files
 files = []
 
-for (dirpath, dirnames, filenames) in os.walk(r'C:\Users\aprabhakar\Desktop\snakes\testDAT\images'):
+for (dirpath, dirnames, filenames) in os.walk(r'\\issrv1\Departmental\KBS\Shared\World\Todd\Container Label Images'):
     for f in filenames:
         files.append(os.path.join(dirpath, f))
 
