@@ -38,11 +38,9 @@ for file in files:
 
     # print("PRINT STATEMENT: NEW IMAGE BEING PROCESSED")
     # print(file)
-    output = "PRINT STATEMENT: NEW IMAGE BEING PROCESSED\n"
+    # output = "PRINT STATEMENT: NEW IMAGE BEING PROCESSED\n"
+    output = ""
     output = output + str(file) + "\n"
-
-    # f = open(r"C:\Users\aprabhakar\Desktop\snakes\testDAT\cloudvisionRes.txt", "w+")
-    # f.write(output)
 
     image = types.Image(content=content)
     response = client.label_detection(image=image)
@@ -57,8 +55,11 @@ for file in files:
         # print(d.description)
         output = output + str(d.description) + "\n"
         break
-
-    with open(r"C:\Users\aprabhakar\Desktop\snakes\testDAT\cloudvisionRes.txt", 'a', encoding="utf-8") as f:
+    realName = file.rsplit('\\', 1)[-1]
+    displayName = realName.split('.', 1)[0]
+    # print(realName)
+    link = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\visionImages\\" + str(displayName) + ".txt"
+    with open(link, 'w+', encoding="utf-8") as f:
         f.write(output)
 
 
