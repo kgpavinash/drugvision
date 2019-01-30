@@ -26,6 +26,7 @@ client = vision.ImageAnnotatorClient()
 
 # Assuming there are not subdirectories, only image files
 files = []
+output = ""
 
 for (dirpath, dirnames, filenames) in os.walk(r'\\issrv1\Departmental\KBS\Shared\World\Todd\Container Label Images'):
     for f in filenames:
@@ -35,7 +36,13 @@ for file in files:
     with io.open(file, 'rb') as image_file:
         content = image_file.read()
 
-    print("PRINT STATEMENT: NEW IMAGE BEING PROCESSED")
+    # print("PRINT STATEMENT: NEW IMAGE BEING PROCESSED")
+    # print(file)
+    output = "PRINT STATEMENT: NEW IMAGE BEING PROCESSED\n"
+    output = output + str(file) + "\n"
+
+    # f = open(r"C:\Users\aprabhakar\Desktop\snakes\testDAT\cloudvisionRes.txt", "w+")
+    # f.write(output)
 
     image = types.Image(content=content)
     response = client.label_detection(image=image)
@@ -47,8 +54,12 @@ for file in files:
     resp = client.document_text_detection(image=image)
 # # print('\n'.join([d.description for d in resp.text_annotations]))
     for d in resp.text_annotations:
-        print(d.description)
+        # print(d.description)
+        output = output + str(d.description) + "\n"
         break
+
+    with open(r"C:\Users\aprabhakar\Desktop\snakes\testDAT\cloudvisionRes.txt", 'a', encoding="utf-8") as f:
+        f.write(output)
 
 
 
