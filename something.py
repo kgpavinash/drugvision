@@ -58,7 +58,7 @@ for file in files:
     realName = file.rsplit('\\', 1)[-1]
     displayName = realName.split('.', 1)[0]
     # print(realName)
-    link = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\visionImages\\" + str(displayName) + ".txt"
+    link = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\stateImages\\" + str(displayName) + "9" + ".txt"
     with open(link, 'w+', encoding="utf-8") as f:
         f.write(output)
 
