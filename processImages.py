@@ -14,18 +14,21 @@ for blob in blobs:
     downloaded_blob = blob.download_as_string()
     image = types.Image(content=downloaded_blob)
     response = client1.document_text_detection(image=image)
+    blob.download_to_filename(r"C:\Users\aprabhakar\Desktop\snakes\testDAT\googleImages\\" + blob.name)
     for d in response.text_annotations:
         # print(d.description)
         output = str(d.description)
-        thePath = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\Processed\\" + imageName[0] + ".txt"
-        with open(thePath, 'w+', encoding="utf-8") as f:
-            f.write(output)
-        break
-    response = client1.text_detection(image=image)
-    for d in response.text_annotations:
-        output = str(d.description)
-        thePath = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\Processed\\" + imageName[0] + ".txt2"
-        with open(thePath, 'w+', encoding="utf-8") as f:
-            f.write(output)
-        break
+        if output is '':
+            print("true")
+    #     thePath = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\Processed\\" + imageName[0] + ".txt"
+    #     with open(thePath, 'w+', encoding="utf-8") as f:
+    #         f.write(output)
+    #     break
+    # response = client1.text_detection(image=image)
+    # for d in response.text_annotations:
+    #     output = str(d.description)
+    #     thePath = r"C:\Users\aprabhakar\Desktop\snakes\testDAT\Processed\\" + imageName[0] + ".txt2"
+    #     with open(thePath, 'w+', encoding="utf-8") as f:
+    #         f.write(output)
+    #     break
 
