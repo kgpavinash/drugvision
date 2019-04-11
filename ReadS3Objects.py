@@ -14,16 +14,18 @@ s3 = boto3.resource('s3')
 data = ""
 keys = []
 bucket = s3.Bucket("labeltextreformatted")
-for obj in bucket.objects.all():
-    key = obj.key
+# for obj in bucket.objects.all():
+    # key = obj.key
     # print(key)
-    body = obj.get()['Body'].read().decode('utf-8')
-    data = data + '\n' + body
+    # body = obj.get()['Body'].read().decode('utf-8')
+    # data = data + '\n' + body
     # print(body)
-    keys.append(key)
+    # keys.append(key)
+data = ''.join([obj.get()['Body'].read().decode('utf-8') + '\n' for obj in bucket.objects.all()])
 
+print("hello")
 # print(data)
-s3.Object('thedestbucket01', 'CombinedFile.txt').put(Body=data)
+s3.Object('newlineoutput', 'CombinedFile.txt').put(Body=data)
 # print(keys)
 # f1 = open(r"C:\Users\aprabhakar\Desktop\snakes\testDAT\temp\storageFiles.txt", "w+")
 # f1.write(str(data))
